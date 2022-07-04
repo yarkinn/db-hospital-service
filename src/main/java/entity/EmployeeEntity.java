@@ -89,13 +89,12 @@ public class EmployeeEntity {
 
     @Override
     public String toString() {
-        return "EmployeeEntity{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", salary=" + salary +
-                ", job='" + job + '\'' +
-                ", hours=" + hours +
-                '}';
+        return
+                "Id: " + id +
+                "\nName: " + name  +
+                "\nSalary: " + salary +
+                "\nJob: " + job +
+                "\nHours: " + hours+ "\n";
     }
 
 

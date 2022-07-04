@@ -1,3 +1,4 @@
+import db_operations.EmployeeOperations;
 import entity.EmployeeEntity;
 
 import javax.persistence.*;
@@ -11,10 +12,10 @@ public class Main {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
-        int count = 0;
 
             try{
                 transaction.begin();
+
 
 
                 EmployeeEntity kaan = new EmployeeEntity();
@@ -34,8 +35,15 @@ public class Main {
 
                 Query query = entityManager.createNativeQuery("SELECT * FROM employee",EmployeeEntity.class);
                 List list = query.getResultList();
-                System.out.println(Arrays.toString(list.toArray()));
+
+                //System.out.println(Arrays.toString(list.toArray()));
                 //entityManager.createNativeQuery("delete from employee where id = 2").executeUpdate();
+                EmployeeOperations operations = new EmployeeOperations();
+                operations.addEmployee("murat","doctor",2000,3500);
+                operations.removeEmployee(4);
+                operations.removeEmployee(4);
+                operations.listEmployees();
+
 
 
                 transaction.commit();
@@ -47,7 +55,6 @@ public class Main {
                 entityManager.close();
                 entityManagerFactory.close();
             }
-            count++;
 
 
 

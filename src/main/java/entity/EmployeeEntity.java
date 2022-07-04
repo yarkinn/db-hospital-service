@@ -1,13 +1,14 @@
 package entity;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
-@Table(name = "employee", schema = "hospital", catalog = "")
+@Table(name = "employee", schema = "hospital")
 public class EmployeeEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id")
+    @Column(name = "id", updatable = false,nullable = false )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Basic
     @Column(name = "name")
@@ -16,8 +17,19 @@ public class EmployeeEntity {
     @Column(name = "salary")
     private Integer salary;
     @Basic
+    @Column(name = "job")
+    private String job;
+    @Basic
     @Column(name = "hours")
     private Integer hours;
+
+    public String getJob() {
+        return job;
+    }
+
+    public void setJob(String job) {
+        this.job = job;
+    }
 
     public int getId() {
         return id;
@@ -51,27 +63,41 @@ public class EmployeeEntity {
         this.hours = hours;
     }
 
+    public EmployeeEntity(String name,String job, int salary, int hours) {
+        this.job = job;
+        this.name = name;
+        this.salary = salary;
+        this.hours = hours;
+    }
+
+    public EmployeeEntity() {
+
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         EmployeeEntity that = (EmployeeEntity) o;
-
-        if (id != that.id) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (salary != null ? !salary.equals(that.salary) : that.salary != null) return false;
-        if (hours != null ? !hours.equals(that.hours) : that.hours != null) return false;
-
-        return true;
+        return id == that.id && Objects.equals(name, that.name) && Objects.equals(salary, that.salary) && Objects.equals(job, that.job) && Objects.equals(hours, that.hours);
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (salary != null ? salary.hashCode() : 0);
-        result = 31 * result + (hours != null ? hours.hashCode() : 0);
-        return result;
+        return Objects.hash(id, name, salary, job, hours);
     }
+
+    @Override
+    public String toString() {
+        return "EmployeeEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", salary=" + salary +
+                ", job='" + job + '\'' +
+                ", hours=" + hours +
+                '}';
+    }
+
+
+
 }

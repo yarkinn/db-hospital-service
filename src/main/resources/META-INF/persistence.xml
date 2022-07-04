@@ -5,5 +5,13 @@
              version="2.2">
     <persistence-unit name="default">
 
+        <class>entity.EmployeeEntity</class>
+        <properties>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/hospital"/>
+            <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="hibernate.connection.username" value="yarkin"/>
+            <property name="hibernate.connection.password" value="admin_12345"/>
+            <property name="hibernate.show_sql" value="true"/>
+        </properties>
     </persistence-unit>
 </persistence>

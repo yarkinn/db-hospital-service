@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="db-hospital-service:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>db-hospital-service</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="db-hospital-service-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="db-hospital-service:war exploded" />
+    </root>
+  </artifact>
+</component>

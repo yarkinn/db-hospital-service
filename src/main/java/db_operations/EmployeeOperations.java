@@ -22,6 +22,9 @@ public class EmployeeOperations {
 
             transaction.commit();
         }
+        catch (Exception e){
+            System.out.println("Employee can't be added");
+        }
         finally{
             if(transaction.isActive()){
                 transaction.rollback();

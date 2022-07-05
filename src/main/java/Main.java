@@ -54,15 +54,17 @@ public class Main {
                     }
                     System.out.print("Salary of employee: ");
                     int salary = in.nextInt();
-                    while( salary < 0  ){
-                        System.out.print("Salary can't be negative,please enter a new salary: ");
+                    while( salary < Constants.minWage || salary > Constants.maxWage  ){
+                        System.out.print("Salary should be in the interval " + Constants.minWage +
+                                " - " + Constants.maxWage + " ,please enter a new salary: ");
                         salary = in.nextInt();
                     }
-                    System.out.print("Working hour of employee: ");
+                    System.out.print("Weekly working hour of employee: ");
 
                     int workingHours = in.nextInt();
-                    while( workingHours < 0  ){
-                        System.out.print("Working hours can't be negative,please enter a new working hour: ");
+                    while( workingHours < Constants.minHours || workingHours > Constants.maxHours  ){
+                        System.out.print("Salary should be in the interval " + Constants.minHours +
+                                " - " + Constants.maxHours + " ,please enter a new weekly hour value: ");
                         workingHours = in.nextInt();
                     }
                     String type = Constants.jobArr[typeNumerated - 1];

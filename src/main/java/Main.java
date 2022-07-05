@@ -41,7 +41,7 @@ public class Main {
                     System.out.println(Constants.jobs);
                     System.out.print("Please choose one of the above options' number: ");
                     int typeNumerated = in.nextInt();
-                    while(typeNumerated > Constants.jobNumber || typeNumerated < 0){
+                    while(typeNumerated > Constants.jobNumber || typeNumerated <= 0){
                         System.out.print("Invalid job input.Try again: ");
                         typeNumerated = in.nextInt();
 

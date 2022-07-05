@@ -18,6 +18,8 @@ public class EmployeeOperations {
             employee.setHours(hours);
             employee.setJob(job);
             entityManager.persist(employee);
+            System.out.println("Employee with specified values have been added. The id of employee is: " + employee.getId());
+
             transaction.commit();
         }
         finally{
@@ -35,6 +37,7 @@ public class EmployeeOperations {
         try{
             transaction.begin();
             entityManager.createNativeQuery("delete from employee where id =" + id).executeUpdate();
+            System.out.println("Employee with id " + id + " has been deleted.");
             transaction.commit();
         }
         catch (Exception e){

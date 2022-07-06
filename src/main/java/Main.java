@@ -24,15 +24,26 @@ public class Main {
         }
         return false;
     }
+    public static String hashIt(String toHash){
+        return toHash;
+    }
     public static void main(String[] args) {
         EmployeeOperations operations = new EmployeeOperations();
         System.out.println("Welcome to Hospital Employee Management System");
+        Scanner in = new Scanner(System.in);
+        System.out.print("Please type in a password to connect to the database: ");
+        String password = "";
+        try{
+            password = in.next();
+        }catch (Exception e){
+            System.out.println("Invalid password type");
+        }
         boolean stop = false;
         while(!stop){
             try{
                 System.out.println("Press 1 to add new employee\nPress 2 to remove employee\nPress 3 to list employees");
                 System.out.print( "Your choice: ");
-                Scanner in = new Scanner(System.in);
+
                 int choice = in.nextInt();
                 System.out.println();
                 if( choice == 1){
@@ -68,13 +79,13 @@ public class Main {
                         workingHours = in.nextInt();
                     }
                     String type = Constants.jobArr[typeNumerated - 1];
-                    operations.addEmployee(name,type,salary,workingHours);
+                    operations.addEmployee(name,type,salary,workingHours,password);
                 }
                 else if( choice == 2){
                     System.out.print("Id of the employee: ");
                     int id = in.nextInt();
-                    if (operations.employeeExists(id)){
-                        operations.removeEmployee(id);
+                    if (operations.employeeExists(id,password)){
+                        operations.removeEmployee(id,password);
 
                     }
                     else{
@@ -82,7 +93,7 @@ public class Main {
                     }
 
                 } else if (choice == 3) {
-                    operations.listEmployees();
+                    operations.listEmployees(password);
                 }
                 System.out.print("If you want to continue type 1 else 0: ");
                 choice = in.nextInt();

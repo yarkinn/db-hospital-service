@@ -3,11 +3,26 @@ package db_operations;
 import entity.EmployeeEntity;
 
 import javax.persistence.*;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class EmployeeOperations {
-    public void addEmployee(String name,String job,int salary,int hours){
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
+    private EntityManagerFactory getEntityManagerFactory(String password) {
+        return Persistence.createEntityManagerFactory( "default",
+                getProperties(password) );
+    }
+
+    private Map getProperties(String password) {
+        Map result = new HashMap();
+
+        result.put( "javax.persistence.jdbc.password", password );
+
+        return result;
+    }
+    public void addEmployee(String name,String job,int salary,int hours,String password){
+
+        EntityManagerFactory entityManagerFactory = getEntityManagerFactory(password);
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
         try{
@@ -33,8 +48,8 @@ public class EmployeeOperations {
             entityManagerFactory.close();
         }
     }
-    public void removeEmployee(int id){
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
+    public void removeEmployee(int id,String password){
+        EntityManagerFactory entityManagerFactory = getEntityManagerFactory(password);
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
         try{
@@ -55,8 +70,8 @@ public class EmployeeOperations {
         }
 
     }
-    public void listEmployees(){
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
+    public void listEmployees(String password){
+        EntityManagerFactory entityManagerFactory = getEntityManagerFactory(password);
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
         try{
@@ -90,9 +105,9 @@ public class EmployeeOperations {
 
     }
 
-    public boolean employeeExists(int id) {
+    public boolean employeeExists(int id,String password) {
         boolean employeeExists = false;
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
+        EntityManagerFactory entityManagerFactory = getEntityManagerFactory(password);
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
         try{

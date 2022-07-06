@@ -102,7 +102,7 @@ public class Main {
                 }
 
             }catch( Exception e){
-                System.out.println("Invalid input! Menu will turn to inital state");
+                System.out.println("Invalid password or input! Menu will turn to initial state");
 
             }
 
